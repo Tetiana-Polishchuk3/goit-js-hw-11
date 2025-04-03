@@ -8,7 +8,7 @@ import { hideLoader, clearGallery, createGallery } from './render-functions';
 export const refs = {
   form: document.querySelector('.form'),
   input: document.querySelector('#input'),
-  button: document.querySelector('button-search'),
+  button: document.querySelector('.button-search'),
   gallery: document.querySelector('.gallery'),
   loader: document.querySelector('.loader-text'),
 };

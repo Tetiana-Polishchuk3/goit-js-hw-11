@@ -34,19 +34,17 @@ export function createGallery(images) {
     .join('');
 
   refs.gallery.innerHTML = markup;
-  lightbox.refresh();
-}
-
-export function showLoader() {
-  refs.gallery.classList.add('hidden');
-  refs.loader.classList.remove('hidden');
-}
-
-export function hideLoader() {
-  refs.loader.classList.add('hidden');
-  refs.gallery.classList.remove('hidden');
+  lightbox.destroy();
 }
 
 export function clearGallery() {
   refs.gallery.innerHTML = '';
+}
+
+export function showLoader() {
+  refs.gallery.classList.add('hidden');
+}
+
+export function hideLoader() {
+  refs.gallery.classList.remove('hidden');
 }
