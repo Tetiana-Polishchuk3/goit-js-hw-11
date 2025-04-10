@@ -25,15 +25,33 @@ refs.form.addEventListener('submit', async e => {
   }
 
   clearGallery();
-  const images = await getImagesByQuery(query);
 
-  if (images && images.length > 0) {
-    iziToast.success({
-      title: 'Success',
-      message: `Found ${images.length} images for your query!`,
+  try {
+    const images = await getImagesByQuery(query);
+
+    if (images && images.length > 0) {
+      createGallery(images);
+
+      iziToast.success({
+        title: 'Success',
+        message: `Found ${images.length} images for your query!`,
+        position: 'topRight',
+      });
+    } else {
+      iziToast.info({
+        title: 'No Results',
+        message: 'No images found. Try another keyword.',
+        position: 'topRight',
+      });
+    }
+  } catch (error) {
+    iziToast.error({
+      title: 'Error',
+      message: 'Failed to fetch images. Please try again later.',
       position: 'topRight',
     });
+    console.error('Fetch error:', error);
+  } finally {
+    hideLoader();
   }
-
-  hideLoader();
 });

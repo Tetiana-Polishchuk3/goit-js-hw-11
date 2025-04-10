@@ -2,7 +2,7 @@ import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from './pixabay-api';
 
-const lightbox = new SimpleLightbox('.gallery a', {
+let lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
 });
@@ -34,7 +34,7 @@ export function createGallery(images) {
     .join('');
 
   refs.gallery.innerHTML = markup;
-  lightbox.destroy();
+  lightbox.refresh();
 }
 
 export function clearGallery() {
@@ -42,9 +42,11 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  refs.gallery.classList.add('hidden');
+  const loader = document.querySelector('.loader');
+  if (loader) loader.style.display = 'block';
 }
 
 export function hideLoader() {
-  refs.gallery.classList.remove('hidden');
+  const loader = document.querySelector('.loader');
+  if (loader) loader.style.display = 'none';
 }
